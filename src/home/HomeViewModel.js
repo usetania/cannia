@@ -10,8 +10,9 @@ import raceJSON from '../data/races.json';
 import strainJSON from '../data/strains.json';
 import FormEffectView from './FormEffectView';
 import FormFlavoursView from './FormFlavoursView';
+import CardResultView from './CardResultView'
 
-document.title = 'Plant Finder';
+document.title = 'Cannia';
 
 class HomeViewModel extends Component {
   constructor(props) {
@@ -29,6 +30,25 @@ class HomeViewModel extends Component {
   }
 
   /**
+   * Load sample data on the first load
+   *
+   */
+  componentDidMount() {
+    const flavour = flavourJSON[Math.floor(Math.random()*flavourJSON.length)];
+
+    // querying 10 random strains by its flavours
+    const randomResult = Object.keys(strainJSON).filter(key => {
+      return strainJSON[key]['flavors'].find( el => el === flavour);
+    }).map(item => {
+      let strain = {};
+      strain[item] = strainJSON[item];
+      return strain;
+    });
+
+    this.setState({ searchData: randomResult });
+  }
+
+  /**
    * This method will filter Strain based on the effect.
    *
    * @param {Object} e is built in browser event
@@ -41,6 +61,7 @@ class HomeViewModel extends Component {
     const effect = effects[0];
     const effectType = effects[1];
 
+    // querying strains data based on its effect and race
     const filteredResult = Object.keys(strainJSON).filter(key => {
       return strainJSON[key]['effects'][effectType].find( el => el === effect) && strainJSON[key]['race'] === race.toLowerCase();
     }).map(item => {
@@ -49,7 +70,6 @@ class HomeViewModel extends Component {
       return strain;
     });
 
-    console.log(filteredResult);
     this.setState({ searchData: filteredResult });
   }
 
@@ -64,6 +84,7 @@ class HomeViewModel extends Component {
     const race = document.getElementById('race').value;
     const flavour = document.getElementById('flavour').value;
 
+    // querying strains data based on its flavour and race
     const filteredResult = Object.keys(strainJSON).filter(key => {
       return strainJSON[key]['flavors'].find( el => el === flavour) && strainJSON[key]['race'] === race.toLowerCase();
     }).map(item => {
@@ -75,13 +96,31 @@ class HomeViewModel extends Component {
     this.setState({ searchData: filteredResult });
   }
 
+  /**
+   * The JSX template starts here.
+   *
+   */
   render() {
     const { effectData, flavourData, racesData, searchData } = this.state;
+    const cardResults = searchData.map(result => {
+      const keyName = Object.keys(result)[0];
+
+      return <CardResultView
+        key={result[keyName].id}
+        id={result[keyName].id}
+        race={result[keyName].race}
+        name={keyName}
+        flavour={result[keyName].flavors.join(', ')}
+        positive={result[keyName].effects.positive.join(', ')}
+        negative={result[keyName].effects.negative.join(', ')}
+        medical={result[keyName].effects.medical.join(', ')}
+      />
+    });
 
     return (
       <Container fluid={true}>
         <Row>
-          <Col>
+          <Col xs={12} sm={12} md={4} lg={3}>
             {/* Tabs for the search form */}
             <Tabs defaultActiveKey='effects'>
               <Tab eventKey='effects' title='Effects'>
@@ -102,9 +141,13 @@ class HomeViewModel extends Component {
               </Tab>
             </Tabs>
           </Col>
-        </Row>
-        <Row>
-          {/* Search Results */}
+
+          {/* Search Result */}
+          <Col xs={12} sm={12} md={8} lg={9}>
+            <Row>
+              {cardResults}
+            </Row>
+          </Col>
         </Row>
       </Container>
     );

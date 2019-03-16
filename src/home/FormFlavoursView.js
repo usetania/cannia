@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet, css} from 'aphrodite/no-important';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -10,13 +11,15 @@ const FormFlavoursView = ({ idName, options, races, submitHandler }) => {
   return (
     <Form onSubmit={submitHandler}>
       <Form.Group id={idName}>
-        <Form.Row>
+        <Form.Row className={css(styles.row)}>
           <Col>
             <Form.Label>{ 'What flavour are you looking for?' }</Form.Label>
             <Form.Control as='select' id='flavour'>
               {Options}
             </Form.Control>
           </Col>
+        </Form.Row>
+        <Form.Row className={css(styles.row)}>
           <Col>
             <Form.Label>From race</Form.Label>
             <Form.Control as='select' id='race'>
@@ -24,7 +27,7 @@ const FormFlavoursView = ({ idName, options, races, submitHandler }) => {
             </Form.Control>
           </Col>
         </Form.Row>
-        <Form.Row>
+        <Form.Row className={css(styles.row)}>
           <Col>
             <Button variant='primary' type='submit'>
               Search
@@ -35,5 +38,12 @@ const FormFlavoursView = ({ idName, options, races, submitHandler }) => {
     </Form>
   );
 };
+
+// THE CSS PART
+const styles = StyleSheet.create({
+  row: {
+    margin: '15px 0 15px 0'
+  }
+});
 
 export default FormFlavoursView;
