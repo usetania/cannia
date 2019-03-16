@@ -121,25 +121,27 @@ class HomeViewModel extends Component {
       <Container fluid={true}>
         <Row>
           <Col xs={12} sm={12} md={4} lg={3}>
-            {/* Tabs for the search form */}
-            <Tabs defaultActiveKey='effects'>
-              <Tab eventKey='effects' title='Effects'>
-                <FormEffectView
-                  idName='effectFrm'
-                  options={effectData}
-                  races={racesData}
-                  submitHandler={this.searchEffectBtnHandler}
-                />
-              </Tab>
-              <Tab eventKey='flavours' title='Flavours'>
-                <FormFlavoursView
-                  idName='flavourFrm'
-                  options={flavourData}
-                  races={racesData}
-                  submitHandler={this.searchFlavourBtnHandler}
-                />
-              </Tab>
-            </Tabs>
+            <div className="sticky-top">
+              {/* Tabs for the search form */}
+              <Tabs defaultActiveKey='effects'>
+                <Tab eventKey='effects' title='Effects'>
+                  <FormEffectView
+                    idName='effectFrm'
+                    options={effectData}
+                    races={racesData}
+                    submitHandler={this.searchEffectBtnHandler}
+                  />
+                </Tab>
+                <Tab eventKey='flavours' title='Flavours'>
+                  <FormFlavoursView
+                    idName='flavourFrm'
+                    options={flavourData}
+                    races={racesData}
+                    submitHandler={this.searchFlavourBtnHandler}
+                  />
+                </Tab>
+              </Tabs>
+            </div>
           </Col>
 
           {/* Search Result */}
