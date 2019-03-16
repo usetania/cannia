@@ -108,10 +108,6 @@ class HomeViewModel extends Component {
         id={result[keyName].id}
         race={result[keyName].race}
         name={keyName}
-        flavour={result[keyName].flavors.join(', ')}
-        positive={result[keyName].effects.positive.join(', ')}
-        negative={result[keyName].effects.negative.join(', ')}
-        medical={result[keyName].effects.medical.join(', ')}
       />
     });
 

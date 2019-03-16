@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import NavigationBar from './shared/NavigationBar';
 import HomeViewModel from './home/HomeViewModel';
+import DetailViewModel from './detail/DetailViewModel';
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
           <NavigationBar />
 
           <Route exact path="/" component={HomeViewModel} />
+          <Route path="/strain/:id" component={DetailViewModel} />
         </React.Fragment>
       </Router>
     );
