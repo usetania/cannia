@@ -12,8 +12,6 @@ import FormEffectView from './FormEffectView';
 import FormFlavoursView from './FormFlavoursView';
 import CardResultView from './CardResultView'
 
-document.title = 'Cannia';
-
 class HomeViewModel extends Component {
   constructor(props) {
     super(props);

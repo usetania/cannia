@@ -1,6 +1,6 @@
 import './App.scss';
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import NavigationBar from './shared/NavigationBar';
 import HomeViewModel from './home/HomeViewModel';
 
