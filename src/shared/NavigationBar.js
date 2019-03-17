@@ -1,11 +1,12 @@
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import { StyleSheet, css} from 'aphrodite/no-important';
+import Logo from '../static/svg/logo_long.svg';
 
 const NavigationBar = () => (
-  <Navbar bg="light" className={css(styles.all)}>
-    <Navbar.Brand href="/">
-      Cannia
+  <Navbar bg="dark" className={css(styles.all)}>
+    <Navbar.Brand href="#/">
+      <img src={Logo} height={30} alt='Cannia Logo' />
     </Navbar.Brand>
   </Navbar>
 );

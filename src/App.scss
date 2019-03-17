@@ -1,1 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
+
+.nav-tabs a.nav-link,
+.nav a.nav-link {
+    color: #30cab3;
+}
+
+.nav a.disabled {
+    color: #6c757d;
+}

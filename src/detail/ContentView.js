@@ -2,8 +2,10 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { StyleSheet, css} from 'aphrodite/no-important';
+import EmailSubscribe from '../shared/EmailSubscribe';
 
-const ContentView = ({ title, detail }) => {
+const ContentView = ({ title, detail, desc }) => {
   let raceClass;
   if(detail.race === 'indica') {
     raceClass = 'bg-success';
@@ -20,11 +22,16 @@ const ContentView = ({ title, detail }) => {
           <Card.Header className={raceClass + ' text-white'}>{detail.race.toUpperCase()}</Card.Header>
           <Card.Body>
             <Card.Title>{title}</Card.Title>
+            <Card.Text>{desc}</Card.Text>
           </Card.Body>
         </Card>
+        {/* Visible only on md */}
+        <div className='d-none d-md-block d-lg-none'>
+          <EmailSubscribe />
+        </div>
       </Col>
       <Col xs={12} sm={12} md={4} lg={3}>
-        <Card>
+        <Card className={css(styles.normal, styles.medium)}>
           <Card.Header>Information</Card.Header>
           <Card.Body>
             <Card.Text>
@@ -46,8 +53,39 @@ const ContentView = ({ title, detail }) => {
           </Card.Body>
         </Card>
       </Col>
+      {/* Visible only on xs */}
+      <Col className='d-block d-sm-none'>
+        <EmailSubscribe />
+      </Col>
+
+      {/* Visible only on sm */}
+      <Col className='d-none d-sm-block d-md-none'>
+        <EmailSubscribe />
+      </Col>
+
+      {/* Visible only on lg */}
+      <Col className='d-none d-lg-block d-xl-none'>
+        <EmailSubscribe />
+      </Col>
+
+      {/* Visible only on xl */}
+      <Col className='d-none d-xl-block'>
+        <EmailSubscribe />
+      </Col>
     </Row>
   );
 }
+
+// THE CSS PART
+const styles = StyleSheet.create({
+  normal: {
+    marginTop: '20px'
+  },
+  medium: {
+    '@media (min-width: 768px)': {
+      marginTop: '0'
+    }
+  }
+});
 
 export default ContentView;

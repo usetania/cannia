@@ -29,7 +29,7 @@ const FormFlavoursView = ({ idName, options, races, submitHandler }) => {
         </Form.Row>
         <Form.Row className={css(styles.row)}>
           <Col>
-            <Button variant='primary' type='submit'>
+            <Button variant='primary' size='lg' type='submit' className={css(styles.button)}>
               Search
             </Button>
           </Col>
@@ -43,6 +43,15 @@ const FormFlavoursView = ({ idName, options, races, submitHandler }) => {
 const styles = StyleSheet.create({
   row: {
     margin: '15px 0 15px 0'
+  },
+  button: {
+    backgroundColor: '#30cab3',
+    border: '1px solid #30cab3',
+    ':hover': {
+      color: '#30cab3',
+      backgroundColor: '#ffffff',
+      border: '1px solid #30cab3'
+    }
   }
 });
 
