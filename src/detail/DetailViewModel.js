@@ -41,7 +41,7 @@ class DetailViewModel extends Component {
     });
 
     // get strain description
-    const url = `http://strainapi.evanbusse.com/${process.env.REACT_APP_STRAIN_API_KEY}/strains/data/desc/${match.params.id}`;
+    const url = `https://strainapi.evanbusse.com/${process.env.REACT_APP_STRAIN_API_KEY}/strains/data/desc/${match.params.id}`;
     axios.get(url).then(res => {
       if(res.data.desc !== null) {
         this.setState({ detailDesc: res.data.desc });
