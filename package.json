@@ -2,7 +2,7 @@
   "name": "cannia",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://bepitulaz.github.io/cannia",
+  "homepage": "http://cannia.usetania.org",
   "dependencies": {
     "aphrodite": "^2.3.1",
     "axios": "^0.18.0",
