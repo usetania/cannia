@@ -15,7 +15,7 @@
     "react-ga": "^2.5.7",
     "react-hook-form-resolvers": "0.0.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.8"
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "gh-pages": "^2.0.1"
